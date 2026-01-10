@@ -1,73 +1,29 @@
-<p align="center">
-  <img width="1101" height="238" alt="image" src="https://github.com/user-attachments/assets/b14165f4-24ff-4abe-8af6-3ca852e781d4" />
-</p>
+# UsenetStreamer
+A bash script for Linux that makes nzbdav-dev's nzbdav project (https://github.com/nzbdav-dev/nzbdav) hassle-free to install on arm64 systems.
+This is the lite version that gives you only nzbdav, Docker, and their Dependencies (including rclone) in case you only want that and/or already have radarr, sonarr, Plex etc. installed somewhere else and want to take care of those separately. There is also a full version (coming soon), which gives you an entire usenet streaming stack complete with nzbdav, radarr, sonarr, lidarr, lazylibrarian, prowlarr, and Plex all installed as Docker containers to fully set up a streaming stack from the beginning in one go.
+Note that if you want to access the files via Samba from a Windows machine over the network, further configuration is necessary that is not covered here (yet). If you successfully manage to make Windows follow the symbolic links into the WebDav virtual folder on the Linux device, let me know!
 
-# Nzb Dav
+# What This Script Does For You
 
-NzbDav is a WebDAV server that allows you to mount and browse NZB documents as a virtual file system without downloading. It's designed to integrate with other media management tools, like Sonarr and Radarr, by providing a SABnzbd-compatible API. With it, you can build an infinite Plex or Jellyfin media library that streams directly from your usenet provider at maxed-out speeds, without using any storage space on your own server.
+You don't have to mess with docker or rclone settings or password obfuscation. The script will install Docker via the official convenience script, detecting your system's architecture and version, and nzbdav as a Docker container, rclone, and all required dependencies. It will ask you for a root directory the project will live in, then create a folder inside that root directory, that you are going to name (no need for creating directories, it does that itself), it will ask you for a WebDAV username and password, obfuscate the password using rclone, and create the docker compose file that nzbdav and the rclone virtual drive require while using nzbdav-dev's recommended settings. It will also create a directory called "library" with subdirectories "movies", "series", "music", "books", "audiobooks", and "software". Further more, it will make sure rclone uses a cache directory on the specified path (optimally an external HDD) in order to protect the home directory from the enormous amount of read/write requests in case the home directory lives on an SD card like on a Raspberry Pi so that it doesn't destroy the card. This is what this project was created for originally: A Raspberry Pi 5 with the OS installed on an SD card and external USB HDD attached so that the entire software for creating a Usenet streaming device can be installed with one click and minimal user input.
+It implements health checks on the services to make sure nzbdav is running before the rclone virtual drive starts. User permissions are updated so that you (and the services running as your user) actually have access to the files nzbdav creates. When installation is complete, it will tell you the IP addresses and ports to access and configure the services via your web browser.
+Developed for Raspberry Pi 5 running the latest Debian version "Trixie" as Pi OS, this should basically run on all modern linux x64 systems, but no guarantees. (Correct me if I'm wrong.)
+For better differentiation of the nzbdav docker service and it's virtual file system, I renamed the nzbdav virtual directory "nzbdav_data" and the rclone mount point on the physical file system "vdrive" (virtual drive) so as to avoid confusion and for better clarity.
+Of course, feel free to edit/add any settings in the Docker compose file but be aware that further dependencies and additional configuration may be necessary --> know what you're doing!
+If anything goes wrong and you destroy your installation, the beauty of everything being located in one directory means you can just delete the entire directory and start from scratch.
 
-Check the video below for a demo:
+# Installation Instructions
 
-https://github.com/user-attachments/assets/be3e59bc-99df-440d-8144-43b030a4eaa4
+1. Download the script to your system into a directory of your choice (assuming the current working directory or home "~/" here) or create a new file there and copy-paste the code into it:
 
-> **Attribution**: The video above contains clips of [Sintel (2010)](https://studio.blender.org/projects/sintel/), by Blender Studios, used under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+nano UsenetStreamerLite.sh
 
+2. Make the script executable:
 
-# Key Features
+chmod +x UsenetStreamerLite.sh
 
-* 📁 **WebDAV Server** - *Host your virtual file system over HTTP(S)*
-* ☁️ **Mount NZB Documents** - *Mount and browse NZB documents without downloading.*
-* 📽️ **Full Streaming and Seeking Abilities** - *Jump ahead to any point in your video streams.*
-* 🗃️ **Stream archived contents** - *View, stream, and seek content within RAR and 7z archives.*
-* 🔓 **Stream password-protected content** - *View, stream, and seek within password-protected archives.*
-* 💙 **Healthchecks & Repairs** - *Automatically replace content that has been removed from your usenet provider*
-* 🧩 **SABnzbd-Compatible API** - *Use NzbDav as a drop-in replacement for sabnzbd.*
-* 🙌 **Sonarr/Radarr Integration** - *Configure it once, and leave it unattended.*
+3. Run it with:
 
-# Getting Started
+sudo ./UsenetStreamerLite.sh
 
-The easiest way to get started is by using the official Docker image.
-
-To try it out, run the following command to pull and run the image with port `3000` exposed:
-
-```bash
-docker run --rm -it -p 3000:3000 nzbdav/nzbdav:alpha
-```
-
-And if you would like to persist saved settings, attach a volume at `/config`
-
-```
-mkdir -p $(pwd)/nzbdav && \
-docker run --rm -it \
-  -v $(pwd)/nzbdav:/config \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -p 3000:3000 \
-  nzbdav/nzbdav:alpha
-```
-After starting the container, be sure to navigate to the Settings page on the UI to finish setting up your usenet connection settings.
-
-<p align="center">
-    <img width="600" alt="settings-page" src="https://github.com/user-attachments/assets/ca0a7fa7-be43-412d-9fec-eda24eb25fdb" />
-</p>
-
-You'll also want to set up a username and password for logging in to the webdav server
-
-<p align="center">
-    <img width="600" alt="webdav-settings" src="https://github.com/user-attachments/assets/833b382c-4e1d-480a-ac25-b9cc674baea4" />
-</p>
-
-# Comprehensive Setup Guide
-
-If you'd like to get the most out of NzbDav, check out the [comprehensive guide](docs/setup-guide.md) for detailed instructions covering:
-* **Docker Compose:** Full stack with Rclone sidecar and healthchecks.
-* **Performance Tuning:** Benchmarking WebDAV connection limits.
-* **Integrations:** Automating Radarr/Sonarr queue management and repairs.
-* **Stremio:** Streaming Usenet directly via AIOStreams.
-
-# More screenshots
-<img width="300" alt="onboarding" src="https://github.com/user-attachments/assets/4ca1bfed-3b98-4ff2-8108-59ed07a25591" />
-<img width="300" alt="queue and history" src="https://github.com/user-attachments/assets/4f69f8dd-0dba-47b4-b02f-3e83ead293db" />
-<img width="300" alt="dav-explorer" src="https://github.com/user-attachments/assets/54a1d49b-8a8d-4306-bcda-9740bd5c9f52" />
-<img width="300" alt="health-page" src="https://github.com/user-attachments/assets/709b81c2-550b-47d0-ad50-65dc184cd3fa" />
-
+4. Follow on-screen instructions
