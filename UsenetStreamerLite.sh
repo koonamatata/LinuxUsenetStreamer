@@ -50,8 +50,8 @@ get_input() {
 
 echo "--- 🚀 Usenet Stack: Captive Portal Edition ---"
 
-get_input "the parent/root directory of this project (e.g., '/mnt/externalHDD' (has to start with '/', no spaces)). A folder which you will name in the next step will be created there into which everything will be installed" "HDD_PATH" "false"
-get_input "the folder's/project's name (e.g., usenet_stack)." "STACK_NAME" "false"
+get_input "the parent directory for this project (e.g., '/mnt/externalHDD' (has to start with '/', no spaces)). A folder which you will name in the next step will be created as the root folder of the project inside this directory, into which everything will be installed" "HDD_PATH" "false"
+get_input "the root folder's/project's name (e.g., 'usenet_stack' (again, no spaces))" "STACK_NAME" "false"
 get_input "the WebDAV Username" "RCLONE_USER" "false"
 get_input "the WebDAV Password" "RCLONE_PASS" "true"
 
