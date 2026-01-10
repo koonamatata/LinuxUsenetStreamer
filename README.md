@@ -33,4 +33,6 @@ chmod +x UsenetStreamerLite.sh
 
 sudo ./UsenetStreamerLite.sh
 
-4. Follow on-screen instructions
+4. Follow on-screen instructions.
+
+5. When configuring NzbDAV via the web interface, in the SABnzbd section where it asks for the Rclone Mount Directory, type "/vdrive" since the vdrive folder is a direct child of the root directory.
