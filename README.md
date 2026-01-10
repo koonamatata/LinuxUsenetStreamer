@@ -47,26 +47,48 @@ Note that if you want to access the files via Samba from a Windows machine over 
 # What This Script Does For You
 
 You don't have to mess with Docker or rclone settings or password obfuscation, the script does this for you. It will install as native applications on the file system:
+
+
 samba (for Windows network shares)
+
 curl (for installing Docker)
+
 fuse3 (required for rclone)
+
 etherwake (for allowing for WakeOnLAN functionality)
+
 hdparm (for HDD powersaving and safe spindown of the HDD read head before system shutdown/reboot)
+
 powertop (optimizing power consumption)
+
 wget (required for installing Docker)
+
 rclone (required)
+
 network-manager (for creating a WiFi captive portal to connect to a new WiFi network)
 
+
 And as Docker containers:
+
+
 SABnzbd (as standalone Usenet download client for manual downloads)
+
 Nzb DAV
+
 Radarr (for movies)
+
 Sonarr (for series / tv shows)
+
 Lidarr (for music + audiobooks)
+
 LazyLibrarian (for ebooks + magazines)
+
 Prowlarr (for indexer management)
+
 Plex (for media library management)
+
 vdrive (the rclone-mirrored virtual file system of the WebDAV server)
+
 
 It will ask you for a parent directory the project root will live in, then create a root folder inside that root directory, that you are going to name (no need for creating directories, it does that itself), it will ask you for a WebDAV username and password, obfuscate the password using rclone, and create the docker compose file with all the services while using nzbdav-dev's recommended settings for nzbdav and the rclone virtual drive. It will also create a directory called "library" with subdirectories "movies", "series", "music", "books", "audiobooks", and "software". Further more, it will make sure rclone uses a cache directory on the specified path (optimally an external HDD) in order to protect the home directory from the enormous amount of read/write requests in case the home directory lives on an SD card like on a Raspberry Pi so that it doesn't destroy the card. This is what this project was created for originally: A Raspberry Pi 5 with the OS installed on an SD card and external USB HDD attached so that the entire software for creating a Usenet streaming device can be installed with one click and minimal user input.
 
