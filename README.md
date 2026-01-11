@@ -109,7 +109,7 @@ In addition, the script will:
 
 6. Detect your system's timezone and input this information into the docker compose file so you don't have to.
 
-7. Install a WiFi captive portal: If you take your Raspberry Pi Usenet streaming box to a friend's house or a hotel room on vacation and can't connect to the router directly using an ethernet cable (which is recommended), the Pi will check for network connectivity after boot. If it detects that there is no network connection, it will open a hotspot with the name "Pi_Setup", which you can then connect to with your phone, and a captive portal in which you can tell the Pi which WiFi network to connect to, providing the password, so that you don't use connection to your Pi.
+7. Install a WiFi captive portal: If you take your Raspberry Pi Usenet streaming box to a friend's house or a hotel room on vacation and can't connect to the router directly using an ethernet cable (which is recommended), the Pi will check for network connectivity after boot. If it detects that there is no network connection, it will open a hotspot with the name "Pi_Setup", which you can then connect to with your phone, and a captive portal in which you can tell the Pi which WiFi network to connect to, providing the password, so that you don't lose connection to your Pi.
 
 8. Create the docker compose file
 
