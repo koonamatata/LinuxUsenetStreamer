@@ -58,7 +58,7 @@ get_input "the WebDAV Password" "RCLONE_PASS" "true"
 # Derived Paths
 STACK_PATH="$HDD_PATH/$STACK_NAME"
 BOOT_SCRIPT="$STACK_PATH/boot_startup.sh"
-DOCKER_CMD="/usr/bin/docker"
+DOCKER_CMD=$(command -v docker)
 HDD_DEVICE=$(findmnt -n -o SOURCE "$HDD_PATH")
 # Get the UUID for persistent hdparm configuration
 HDD_UUID=$(lsblk -no UUID "$HDD_DEVICE")
