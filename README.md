@@ -1,8 +1,6 @@
 # UsenetStreamerLite
 A bash script for Linux that makes nzbdav-dev's nzbdav project (https://github.com/nzbdav-dev/nzbdav) hassle-free to install on arm64 systems.  
-NzbDAV is a genius idea, but it's not exactly easy to set up. This is where this script comes in.  
-
-Pull requests much appreciated!
+NzbDAV is a genius idea, but it's not exactly easy to set up. This is where this script comes in. Pull requests much appreciated!  
 
 This is the lite version that gives you only nzbdav, Docker, and their dependencies (including rclone) in case you only want that and/or already have radarr, sonarr, Plex etc. installed somewhere else and want to take care of those separately. There is also a full version, which gives you an entire usenet streaming stack complete with nzbdav, radarr, sonarr, lidarr, lazylibrarian, prowlarr, and Plex all installed as Docker containers to fully set up a streaming stack from the beginning in one go.
 
