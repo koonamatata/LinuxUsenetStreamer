@@ -200,7 +200,7 @@ services:
       - "--vfs-cache-max-size=5G"
       - "--vfs-cache-max-age=24h"
       - "--buffer-size=0M"
-      - "--vfs-read-ahead=1024M"
+      - "--vfs-read-ahead=512M"
       - "--dir-cache-time=20s"
       - "--no-modtime"
 EOF
