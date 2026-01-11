@@ -24,7 +24,7 @@ If anything goes wrong and you destroy your installation, the beauty of everythi
 
 # Installation Instructions
 
-1. Download the script onto your system into a directory of your choice (assuming the current working directory or home "~/" here; you can find the downloadable script file under "Releases") or create a new file there and copy-paste the code (from the "Files" section) into it:
+1. Download the script onto your system into a directory of your choice (assuming the current working directory or home "~/" here; you can find the downloadable script file under "Releases") or create a new file there and copy-paste the code (from the "<> Code"/"Files" section) into it:
 
 nano UsenetStreamerLite.sh
 
@@ -136,7 +136,7 @@ If anything goes wrong and you destroy your installation, the beauty of everythi
 
 # Installation Instructions
 
-1. Download the script onto your system into a directory of your choice (assuming the current working directory or home "~/" here; you can find the downloadable script file under "Releases") or create a new file there and copy-paste the code (from the "Files" section) into it:
+1. Download the script onto your system into a directory of your choice (assuming the current working directory or home "~/" here; you can find the downloadable script file under "Releases") or create a new file there and copy-paste the code (from the "<> Code"/"Files" section) into it:
 
 nano UsenetStreamerFull.sh
 
