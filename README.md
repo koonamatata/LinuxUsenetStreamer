@@ -16,16 +16,16 @@ If anything goes wrong and you destroy your installation, the beauty of everythi
 
 ## Installation Instructions
 1. Download the script onto your system into a directory of your choice (assuming the current working directory or home "~/" here; you can find the downloadable script file under "Releases") or create a new file there and copy-paste the code (from the "<> Code"/"Files" section) into it:  
-'nano UsenetStreamerLite.sh'
+`nano UsenetStreamerLite.sh`
 
 2. Make the script executable:  
-'chmod +x UsenetStreamerLite.sh'
+`chmod +x UsenetStreamerLite.sh`
 
 3. Run it with:  
-'sudo ./UsenetStreamerLite.sh'
+`sudo ./UsenetStreamerLite.sh`
 
 4. Follow on-screen instructions.  
-When configuring NzbDAV via the web interface, in the SABnzbd section where it asks for the Rclone Mount Directory, type '/vdrive' since the vdrive folder is a direct child of the root directory.
+When configuring NzbDAV via the web interface, in the SABnzbd section where it asks for the Rclone Mount Directory, type `/vdrive` since the vdrive folder is a direct child of the root directory.
 
 
 # UsenetStreamerFull
@@ -82,13 +82,13 @@ If anything goes wrong and you destroy your installation, the beauty of everythi
 
 ## Installation Instructions
 1. Download the script onto your system into a directory of your choice (assuming the current working directory or home "~/" here; you can find the downloadable script file under "Releases") or create a new file there and copy-paste the code (from the "<> Code"/"Files" section) into it:  
-'nano UsenetStreamerFull.sh'
+`nano UsenetStreamerFull.sh`
 
 2. Make the script executable:  
-'chmod +x UsenetStreamerFull.sh'
+`chmod +x UsenetStreamerFull.sh`
 
 4. Run it with:  
-'sudo ./UsenetStreamerFull.sh'
+`sudo ./UsenetStreamerFull.sh`
 
 4. Follow on-screen instructions.  
-When configuring NzbDAV via the web interface, in the SABnzbd section where it asks for the Rclone Mount Directory, type "/vdrive" since the vdrive folder is a direct child of the root directory.
+When configuring NzbDAV via the web interface, in the SABnzbd section where it asks for the Rclone Mount Directory, type `/vdrive` since the vdrive folder is a direct child of the root directory.
