@@ -1,4 +1,4 @@
-#UsenetStreamer
+# UsenetStreamer
 A bash script for Linux that makes nzbdav-dev's [nzbdav project](https://github.com/nzbdav-dev/nzbdav) hassle-free to install on arm64 systems.  
 NzbDAV is a genius idea, but it's not exactly easy to set up. This is where these scripts come in. Pull requests much appreciated!
 
