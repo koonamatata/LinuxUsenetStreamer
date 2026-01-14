@@ -1,10 +1,13 @@
-# UsenetStreamerLite
+#UsenetStreamer
 A bash script for Linux that makes nzbdav-dev's [nzbdav project](https://github.com/nzbdav-dev/nzbdav) hassle-free to install on arm64 systems.  
-NzbDAV is a genius idea, but it's not exactly easy to set up. This is where this script comes in. Pull requests much appreciated!  
+NzbDAV is a genius idea, but it's not exactly easy to set up. This is where these scripts come in. Pull requests much appreciated!
+
+
+## UsenetStreamerLite
 This is the lite version that gives you only nzbdav, Docker, and their dependencies (including rclone) in case you only want that and/or already have radarr, sonarr, Plex etc. installed somewhere else and want to take care of those separately. There is also a full version, which gives you an entire usenet streaming stack complete with nzbdav, radarr, sonarr, lidarr, lazylibrarian, prowlarr, and Plex all installed as Docker containers to fully set up a streaming stack from the beginning in one go.  
 Note that if you want to access the files via Samba from a Windows machine over the network, further configuration is necessary that is not covered here (yet). If you successfully manage to make Windows follow the symbolic links into the WebDav virtual folder on the Linux device, let me know!
 
-## What This Script Does For You
+### What This Script Does For You
 You don't have to mess with Docker or rclone settings or password obfuscation. The script will install Docker via the official convenience script, detecting your system's architecture and version, and nzbdav as a Docker container, rclone, and all required dependencies. It will ask you for a parent directory the project root will live in, then create a root folder (that you are going to name) inside that parent directory without the need for you to create any directories, it does that itself. It will then ask you for a WebDAV username and password, obfuscate the password using rclone, and create the docker compose file that nzbdav and the rclone virtual drive require while using nzbdav-dev's recommended settings. It will also create a directory called "library" with subdirectories "movies", "series", "music", "books", "audiobooks", and "software".  
 Furthermore, it will make sure rclone uses a cache directory on the specified path (optimally an external HDD) in order to protect the home directory from the enormous amount of read/write requests in case the home directory lives on an SD card like on a Raspberry Pi so that it doesn't destroy the card. This is what this project was created for originally: A Raspberry Pi 5 with the OS installed on an SD card and external USB HDD attached so that the entire software for creating a Usenet streaming device can be installed with one click and minimal user input.  
 It implements health checks on the services to make sure nzbdav is running before the rclone virtual drive starts. User permissions are updated so that you (and the services running as your user) actually have access to the files nzbdav creates. It also creates a boot script and a systemd service that launch the containers after reboot. When installation is complete, it will tell you the IP addresses and ports to access and configure the services via your web browser.
@@ -14,7 +17,7 @@ For better differentiation of the nzbdav Docker service and it's virtual file sy
 Of course, feel free to edit/add any settings in the Docker compose file but be aware that further dependencies and additional configuration may be necessary --> know what you're doing!  
 If anything goes wrong and you destroy your installation, the beauty of everything being located in one directory means you can just delete the entire directory and start from scratch.
 
-## Installation Instructions
+### Installation Instructions
 1. Download the script onto your system into a directory of your choice (assuming the current working directory or home "~/" here; you can find the downloadable script file under "Releases") or create a new file there and copy-paste the code (from the "<> Code"/"Files" section) into it:  
 `nano UsenetStreamerLite.sh`
 
@@ -28,13 +31,11 @@ If anything goes wrong and you destroy your installation, the beauty of everythi
 When configuring NzbDAV via the web interface, in the SABnzbd section where it asks for the Rclone Mount Directory, type `/vdrive` since the vdrive folder is a direct child of the root directory.
 
 
-# UsenetStreamerFull
-A bash script for Linux that makes nzbdav-dev's [nzbdav project](https://github.com/nzbdav-dev/nzbdav) hassle-free to install on arm64 systems.  
-NzbDAV is a genius idea, but it's not exactly easy to set up. This is where this script comes in. Pull requests much appreciated!  
+## UsenetStreamerFull
 This is the full version that, apart from all necessary dependencies including rclone, installs Docker, nzbdav, SABnzbd as standalone download client for manual downloads, radarr, sonarr, lidarr, lazylibrarian, prowlarr, and Plex all as Docker containers plus some additional software specific for the use case of a portable Raspberry Pi Usenet streamer (details below), making it the ultimate installation script for a 0-day, minimally interactive setup of a Usenet streaming box using NzbDAV.  
 Note that if you want to access the files via Samba from a Windows machine over the network, further configuration is necessary that is not covered here (yet). If you successfully manage to make Windows follow the symbolic links into the WebDav virtual folder on the Linux device, let me know!
 
-## What This Script Does For You
+### What This Script Does For You
 You don't have to mess with Docker or rclone settings or password obfuscation, the script does this for you. It will install as native applications on the file system:  
 - samba (for Windows network shares)
 - curl (for installing Docker)
@@ -80,7 +81,7 @@ For better differentiation of the nzbdav Docker service and it's virtual file sy
 Of course, feel free to edit/add any settings in the Docker compose file but be aware that further dependencies and additional configuration may be necessary --> know what you're doing!  
 If anything goes wrong and you destroy your installation, the beauty of everything being located in one directory means you can just delete the entire directory and start from scratch.
 
-## Installation Instructions
+### Installation Instructions
 1. Download the script onto your system into a directory of your choice (assuming the current working directory or home "~/" here; you can find the downloadable script file under "Releases") or create a new file there and copy-paste the code (from the "<> Code"/"Files" section) into it:  
 `nano UsenetStreamerFull.sh`
 
